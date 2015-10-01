@@ -41,7 +41,10 @@ def get_docs():
             docs.append({
                 'id': id,
                 'date': datetime.strptime(date, "%m/%d/%Y"),
-                'text': string
+                'text': string,
+                'agency': row[3],
+                'shortTitle': row[7],
+                'description': row[16] + ("\n" + row[17] if row[17] else "") + ("\n" + row[18] if row[18] else "")
             })
 
     data_file.close()
@@ -57,15 +60,23 @@ def main():
 
     feature_names = tfidf.get_feature_names()
     for row in xrange(0, len(doc_objects)):
+        doc = doc_objects[row]
         doc_dict = {}
         doc_row = doc_term_weighted_matrix.getrow(row)
 
         for nonzero_col in doc_row.nonzero()[1]:
             doc_dict[feature_names[nonzero_col]] = doc_row[0, nonzero_col]
 
-        print hearings.insert(
-            {"_id": doc_objects[row]["id"], "features": doc_dict, "date": doc_objects[row]["date"]}
-        )
+        hearings.insert({
+            "_id": doc["id"],
+            "human_info": {
+                "agency": doc["agency"],
+                "shortTitle": doc["shortTitle"],
+                "description": doc["description"]
+            },
+            "features": doc_dict,
+            "date": doc["date"]
+        })
 
 if __name__ == '__main__':
     main()
