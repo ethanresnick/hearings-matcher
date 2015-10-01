@@ -3,6 +3,7 @@
 import csv
 import re
 import unicodedata
+from tokenizer import tokenize
 from datetime import datetime
 from pymongo import MongoClient
 from sklearn.feature_extraction.text import TfidfVectorizer
@@ -45,22 +46,6 @@ def get_docs():
 
     data_file.close()
     return docs
-
-
-# Convert string to lowercase, remove punctuation and split on space
-def tokenize(text):
-    # Convert all words to lower case
-    processed_text = text.lower()
-
-    # Remove punctuation
-    processed_text = re.sub(r'[\.\,\(\)\;\:\#\%\*\"\$\-]+', '', processed_text)
-
-    # Replace atypical whitespace with a single space
-    # Remove all numbers too.
-    processed_text = re.sub(r'[\r\t\n\d]+', ' ', processed_text)
-
-    # Split to a list, filter empty tokens, and return
-    return filter(lambda x: x != "", processed_text.split(" "))
 
 # Make the doc vectors using tfidf weights + insert them in mongo
 def main():

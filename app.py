@@ -1,5 +1,6 @@
 from flask import Flask, jsonify, request, Markup
 from bs4 import BeautifulSoup
+import tokenizer
 import requests
 app = Flask(__name__)
 
