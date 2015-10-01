@@ -1,8 +1,9 @@
-from flask import Flask, jsonify, request, Markup
+from flask import Flask, jsonify, request
 from bs4 import BeautifulSoup
 import tokenizer
 from datetime import datetime
 import requests
+
 app = Flask(__name__)
 
 def get_article_info(url):

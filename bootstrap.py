@@ -1,8 +1,6 @@
 #!/usr/bin/python
 
 import csv
-import re
-import unicodedata
 from tokenizer import tokenize
 from datetime import datetime
 from pymongo import MongoClient
@@ -51,7 +49,7 @@ def get_docs():
     return docs
 
 # Make the doc vectors using tfidf weights + insert them in mongo
-def main():
+def train_model_and_save():
     hearings = MongoClient().hearings.hearings
 
     doc_objects = get_docs()
@@ -79,4 +77,4 @@ def main():
         })
 
 if __name__ == '__main__':
-    main()
+    train_model_and_save()
