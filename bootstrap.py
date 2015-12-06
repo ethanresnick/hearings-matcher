@@ -34,7 +34,7 @@ def get_docs():
             date = row[1]
             string = row[3] + row[4] + row[7] + row[16] + row[17] + \
                   row[18] + row[19] + row[20] + row[21] + row[24] + \
-                  row[25] + row[26]
+                  row[25] + row[26] + row[32]
 
             docs.append({
                 'id': id,
