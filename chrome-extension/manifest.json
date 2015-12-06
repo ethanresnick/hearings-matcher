@@ -1,19 +1,20 @@
 {
   "manifest_version": 2,
-  "name": "My Cool Extension",
+  "name": "Hearings Matcher",
   "version": "0.1",
   "content_scripts": [
     {
       "matches": [
         "<all_urls>"
       ],
+      "html": ["index.html"],
       "js": ["jquery-2.1.4.min.js", "content.js"]
     }
   ],
   "browser_action": {
     "default_icon": "icon.png"
   },
-  "background": {
+    "background": {
     "scripts": ["background.js"]
   }
 }
