@@ -6,7 +6,7 @@ def tokenize(text):
     processed_text = text.lower()
 
     # Remove punctuation
-    processed_text = re.sub(ur'[\.\,\(\)\;\:\#\%\*\"\$\-\u201c\u201d\u2013\u2014\u00A7]+', '', processed_text)
+    processed_text = re.sub(ur'[_\.\,\(\)\;\:\#\%\*\"\$\-\u201c\u201d\u2013\u2014\u00A7]+', '', processed_text)
 
     # Replace atypical whitespace with a single space
     # Remove all numbers too.
