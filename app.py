@@ -6,8 +6,6 @@ import requests
 import os
 
 app = Flask(__name__)
-app.config["DEBUG"] = os.environ['DEBUG']
-app.config["SERVER_NAME"] = os.environ["SERVER_NAME"]
 
 def get_article_info(url):
     new_url = "https://www.readability.com/api/content/v1/parser?url=" + url + "&token=f6b04483b9e3f605ce40fc73858b3522ef7869b9"
@@ -41,4 +39,4 @@ def matches():
     return jsonify(matches)
 
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=bool(os.environ['DEBUG']), host=os.environ['HOST'], port=int(os.environ['PORT']))
